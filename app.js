@@ -6,28 +6,27 @@ const mongoose = require("mongoose");
 const graphQlSchema = require("./graphql/schema");
 const graphQlResolvers = require("./graphql/resolvers");
 
-async function main() {
-  const app = express();
+const app = express();
 
-  app.use(bodyParser.json());
+app.use(bodyParser.json());
 
-  app.use(
-    "/graphql",
-    graphQlHttp({
-      schema: graphQlSchema,
-      rootValue: graphQlResolvers,
-      graphiql: true,
-    })
-  );
+app.use(
+  "/graphql",
+  graphQlHttp({
+    schema: graphQlSchema,
+    rootValue: graphQlResolvers,
+    graphiql: true,
+  })
+);
 
-  await mongoose.connect(
+mongoose
+  .connect(
     `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-uifhw.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
-  );
-
-  app.listen(3000);
-}
-
-main().catch((err) => {
-  console.error(err);
-  throw err;
-});
+  )
+  .then(() => {
+    app.listen(3000);
+  })
+  .catch((err) => {
+    console.error(err);
+    throw err;
+  });
