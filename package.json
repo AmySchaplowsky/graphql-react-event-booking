@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
-    "install:frozen": "rm -rf node_modules/ && yarn install --frozen-lockfile",
-    "install:fresh": "rm -rf node_modules/ yarn.lock && yarn install"
+    "install:frozen": "rm -rf node_modules/ && yarn --frozen-lockfile",
+    "install:fresh": "rm -rf node_modules/ yarn.lock && yarn"
   },
   "author": "Amy Schaplowsky",
   "license": "ISC",
