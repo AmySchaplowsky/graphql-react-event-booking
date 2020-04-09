@@ -3,8 +3,8 @@ const express = require("express");
 const graphQlHttp = require("express-graphql");
 const mongoose = require("mongoose");
 
-const graphQlSchema = require("./graphql/schema");
 const graphQlResolvers = require("./graphql/resolvers");
+const graphQlSchema = require("./graphql/schema");
 
 const app = express();
 
